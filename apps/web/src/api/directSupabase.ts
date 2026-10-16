@@ -511,52 +511,82 @@ export const directSupabase = {
     customer_phone: string;
     customer_email?: string;
     service_id: string;
-    service_name_snapshot: string;
+    service_name_snapshot?: string;
     additional_services_snapshot?: string[];
     appointment_date: string;
     start_time: string;
-    end_time: string;
+    end_time?: string;
     customer_notes?: string;
   }): Promise<{ success: boolean; data: Appointment }> {
     const bookingReference = `BAC-${Math.floor(100000 + Math.random() * 900000)}`;
 
+    // Resolve service name snapshot defensively
+    let serviceName = payload.service_name_snapshot?.trim();
+    if (!serviceName) {
+      const foundSvc = FALLBACK_SERVICES.find((s) => s.id === payload.service_id);
+      serviceName = foundSvc?.name || 'Internet Cafe Consultation';
+    }
+
+    // Resolve and format start_time and end_time (HH:MM:SS)
+    const cleanStart = payload.start_time.trim().slice(0, 5);
+    const startTime = cleanStart.length === 5 ? `${cleanStart}:00` : payload.start_time;
+    let endTime = payload.end_time?.trim();
+    if (!endTime) {
+      const [h, m] = cleanStart.split(':').map(Number);
+      const totalM = h * 60 + m + 30;
+      const endH = Math.floor(totalM / 60) % 24;
+      const endM = totalM % 60;
+      endTime = `${String(endH).padStart(2, '0')}:${String(endM).padStart(2, '0')}:00`;
+    } else if (endTime.length === 5) {
+      endTime = `${endTime}:00`;
+    }
+
     if (isSupabaseFrontendConfigured) {
+      let lastError: Error | null = null;
+
+      // Step A: Call atomic RPC with all 11 exact parameters
       try {
-        // Try atomic RPC first
         const { data: rpcData, error: rpcError } = await supabase.rpc('book_appointment_atomic', {
           p_booking_reference: bookingReference,
-          p_customer_name: payload.customer_name,
-          p_customer_phone: payload.customer_phone,
-          p_customer_email: payload.customer_email || null,
+          p_customer_name: payload.customer_name.trim(),
+          p_customer_phone: payload.customer_phone.trim(),
+          p_customer_email: payload.customer_email?.trim() || null,
           p_service_id: payload.service_id,
-          p_service_name_snapshot: payload.service_name_snapshot,
+          p_service_name_snapshot: serviceName,
           p_additional_services_snapshot: payload.additional_services_snapshot || [],
           p_appointment_date: payload.appointment_date,
-          p_start_time: payload.start_time,
-          p_end_time: payload.end_time,
-          p_customer_notes: payload.customer_notes || null,
+          p_start_time: startTime,
+          p_end_time: endTime,
+          p_customer_notes: payload.customer_notes?.trim() || null,
         });
 
-        if (!rpcError && rpcData?.success) {
+        if (!rpcError && rpcData?.success && rpcData?.appointment) {
           notifyDataChange('appointments');
           return { success: true, data: rpcData.appointment as Appointment };
         }
+        if (rpcError) {
+          lastError = new Error(rpcError.message);
+        }
+      } catch (rpcCatch) {
+        lastError = rpcCatch as Error;
+      }
 
-        // Direct insert fallback
+      // Step B: Direct table insert into appointments
+      try {
         const { data, error } = await supabase
           .from('appointments')
           .insert({
             booking_reference: bookingReference,
-            customer_name: payload.customer_name,
-            customer_phone: payload.customer_phone,
-            customer_email: payload.customer_email || null,
+            customer_name: payload.customer_name.trim(),
+            customer_phone: payload.customer_phone.trim(),
+            customer_email: payload.customer_email?.trim() || null,
             service_id: payload.service_id,
-            service_name_snapshot: payload.service_name_snapshot,
+            service_name_snapshot: serviceName,
             additional_services_snapshot: payload.additional_services_snapshot || [],
             appointment_date: payload.appointment_date,
-            start_time: payload.start_time,
-            end_time: payload.end_time,
-            customer_notes: payload.customer_notes || null,
+            start_time: startTime,
+            end_time: endTime,
+            customer_notes: payload.customer_notes?.trim() || null,
             status: 'pending',
           })
           .select()
@@ -566,8 +596,17 @@ export const directSupabase = {
           notifyDataChange('appointments');
           return { success: true, data: data as Appointment };
         }
-      } catch (err) {
-        console.warn('Supabase booking error, saving to local store', err);
+        if (error) {
+          console.error('Supabase direct insert error:', error);
+          throw new Error(error.message || 'Failed to record appointment in database');
+        }
+      } catch (insertErr) {
+        console.error('Direct insert exception:', insertErr);
+        throw insertErr;
+      }
+
+      if (lastError) {
+        throw lastError;
       }
     }
 
@@ -579,11 +618,11 @@ export const directSupabase = {
       customer_phone: payload.customer_phone,
       customer_email: payload.customer_email || null,
       service_id: payload.service_id,
-      service_name_snapshot: payload.service_name_snapshot,
+      service_name_snapshot: serviceName,
       additional_services_snapshot: payload.additional_services_snapshot || [],
       appointment_date: payload.appointment_date,
-      start_time: payload.start_time,
-      end_time: payload.end_time,
+      start_time: startTime,
+      end_time: endTime,
       status: 'pending',
       customer_notes: payload.customer_notes || null,
       created_at: new Date().toISOString(),
@@ -760,11 +799,13 @@ export const directSupabase = {
       }
     }
 
-    if (apts.length === 0) {
-      apts = getLocalStore<Appointment[]>(STORAGE_KEYS.APPOINTMENTS, INITIAL_DEMO_APPOINTMENTS);
-    }
-    if (fbs.length === 0) {
-      fbs = getLocalStore<FeedbackItem[]>(STORAGE_KEYS.FEEDBACK, INITIAL_DEMO_FEEDBACK);
+    if (!isSupabaseFrontendConfigured) {
+      if (apts.length === 0) {
+        apts = getLocalStore<Appointment[]>(STORAGE_KEYS.APPOINTMENTS, INITIAL_DEMO_APPOINTMENTS);
+      }
+      if (fbs.length === 0) {
+        fbs = getLocalStore<FeedbackItem[]>(STORAGE_KEYS.FEEDBACK, INITIAL_DEMO_FEEDBACK);
+      }
     }
 
     const todayStr = new Date().toISOString().split('T')[0];
@@ -813,6 +854,7 @@ export const directSupabase = {
     page?: number;
   }): Promise<{ data: Appointment[]; pagination: { total: number; page: number; limit: number } }> {
     let apts: Appointment[] = [];
+    let isLiveFetched = false;
 
     if (isSupabaseFrontendConfigured) {
       try {
@@ -828,15 +870,16 @@ export const directSupabase = {
         }
         query = query.order('appointment_date', { ascending: false }).order('start_time', { ascending: true });
         const { data, error } = await query;
-        if (!error && data && data.length > 0) {
+        if (!error && data) {
           apts = data as Appointment[];
+          isLiveFetched = true;
         }
       } catch {
         // Fallback
       }
     }
 
-    if (apts.length === 0) {
+    if (!isLiveFetched) {
       apts = getLocalStore<Appointment[]>(STORAGE_KEYS.APPOINTMENTS, INITIAL_DEMO_APPOINTMENTS);
       if (params?.status) {
         apts = apts.filter((a) => a.status === params.status);

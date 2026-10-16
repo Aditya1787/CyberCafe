@@ -119,14 +119,27 @@ export const BookAppointmentPage: React.FC = () => {
       return;
     }
 
+    const selectedService = services.find((s) => s.id === selectedServiceId);
+    const serviceName = selectedService?.name || 'Internet Cafe Consultation';
+
+    const cleanSlot = selectedTimeSlot.slice(0, 5);
+    const [slotHour, slotMinute] = cleanSlot.split(':').map(Number);
+    const totalMinutes = slotHour * 60 + slotMinute + 30;
+    const endHour = Math.floor(totalMinutes / 60) % 24;
+    const endMinute = totalMinutes % 60;
+    const formattedEndTime = `${String(endHour).padStart(2, '0')}:${String(endMinute).padStart(2, '0')}:00`;
+    const formattedStartTime = `${cleanSlot}:00`;
+
     bookMutation.mutate({
-      customer_name: customerName,
-      customer_phone: customerPhone,
-      customer_email: customerEmail || undefined,
+      customer_name: customerName.trim(),
+      customer_phone: customerPhone.trim(),
+      customer_email: customerEmail?.trim() || undefined,
       service_id: selectedServiceId,
+      service_name_snapshot: serviceName,
       appointment_date: appointmentDate,
-      start_time: selectedTimeSlot,
-      customer_notes: customerNotes || undefined,
+      start_time: formattedStartTime,
+      end_time: formattedEndTime,
+      customer_notes: customerNotes?.trim() || undefined,
       consent: true,
     });
   };
