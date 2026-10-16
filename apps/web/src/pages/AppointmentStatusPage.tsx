@@ -103,7 +103,7 @@ export const AppointmentStatusPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg dark:bg-[#0b111e] py-10 sm:py-16 transition-colors duration-200">
+    <div className="min-h-screen py-10 sm:py-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400 mb-6">

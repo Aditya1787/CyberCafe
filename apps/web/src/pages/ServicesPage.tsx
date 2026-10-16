@@ -83,7 +83,7 @@ export const ServicesPage: React.FC = () => {
   const hasActiveFilters = currentCategory !== 'all' || currentSearch !== '' || currentSort !== 'order';
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] py-8 sm:py-16 transition-colors duration-200">
+    <div className="min-h-screen py-8 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
@@ -109,7 +109,7 @@ export const ServicesPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search services by keyword, document, or name..."
-                className="w-full pl-11 pr-24 py-3 neo-inset text-base sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
+                className="w-full pl-11 pr-24 py-3 neo-inset text-base sm:text-sm text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
               />
               <button
                 type="submit"
@@ -121,14 +121,14 @@ export const ServicesPage: React.FC = () => {
 
             {/* Sort Select */}
             <div className="flex items-center gap-2 w-full md:w-auto">
-              <div className="flex items-center gap-1.5 text-xs text-slate-500 flex-shrink-0 font-medium">
+              <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 flex-shrink-0 font-medium">
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 <span>Sort by:</span>
               </div>
               <select
                 value={currentSort}
                 onChange={handleSortChange}
-                className="neo-inset text-xs px-3.5 py-2.5 text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
+                className="neo-inset text-xs px-3.5 py-2.5 text-slate-800 dark:text-slate-100 dark:bg-[#0e1726] font-medium focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
               >
                 <option value="order">Featured / Recommended</option>
                 <option value="name_asc">Name (A to Z)</option>
@@ -139,13 +139,13 @@ export const ServicesPage: React.FC = () => {
           </div>
 
           {/* Category Tabs */}
-          <div className="pt-3 border-t border-slate-200/60 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none text-xs">
+          <div className="pt-3 border-t border-slate-200/60 dark:border-white/10 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none text-xs">
             <button
               onClick={() => handleCategorySelect('all')}
               className={`px-3.5 py-2 rounded-full font-bold whitespace-nowrap transition-all ${
                 currentCategory === 'all'
-                  ? 'neo-pill-inset text-brand-teal'
-                  : 'neo-pill text-slate-600 hover:text-slate-900'
+                  ? 'neo-pill-inset text-brand-teal dark:text-sky-400'
+                  : 'neo-pill text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               All Categories ({totalCount})
@@ -156,8 +156,8 @@ export const ServicesPage: React.FC = () => {
                 onClick={() => handleCategorySelect(cat.slug)}
                 className={`px-3.5 py-2 rounded-full font-bold whitespace-nowrap transition-all ${
                   currentCategory === cat.slug
-                    ? 'neo-pill-inset text-brand-teal'
-                    : 'neo-pill text-slate-600 hover:text-slate-900'
+                    ? 'neo-pill-inset text-brand-teal dark:text-sky-400'
+                    : 'neo-pill text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {cat.name}

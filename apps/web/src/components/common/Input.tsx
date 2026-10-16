@@ -21,27 +21,27 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={inputId} className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
+        <label htmlFor={inputId} className="block text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5">
           {label} {props.required && <span className="text-rose-500">*</span>}
         </label>
       )}
       <div className={`relative neo-inset transition-all ${error ? 'ring-2 ring-rose-400' : ''}`}>
         {leftIcon && (
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
             {leftIcon}
           </div>
         )}
         <input
           id={inputId}
           ref={ref}
-          className={`w-full bg-transparent px-3.5 py-2.5 sm:py-3 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none disabled:opacity-50 ${
+          className={`w-full bg-transparent px-3.5 py-2.5 sm:py-3 text-base sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none disabled:opacity-50 ${
             leftIcon ? 'pl-10' : ''
           } ${className}`}
           {...props}
         />
       </div>
-      {error && <p className="text-xs text-rose-600 mt-1 font-medium">{error}</p>}
-      {!error && helperText && <p className="text-[11px] text-slate-500 mt-1">{helperText}</p>}
+      {error && <p className="text-xs text-rose-600 dark:text-rose-400 mt-1 font-medium">{error}</p>}
+      {!error && helperText && <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">{helperText}</p>}
     </div>
   );
 });

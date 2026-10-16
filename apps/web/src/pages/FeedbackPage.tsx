@@ -97,7 +97,7 @@ export const FeedbackPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] py-8 sm:py-16 transition-colors duration-200">
+    <div className="min-h-screen py-8 sm:py-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
@@ -115,7 +115,7 @@ export const FeedbackPage: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white mt-1">
               Share Your Cafe Experience
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
               Tell us how we did during your visit to Baba Anandeshwar Internet Cafe in Naubasta, Kanpur.
             </p>
           </div>
@@ -123,7 +123,7 @@ export const FeedbackPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Star Rating Input */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">
+              <label className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2">
                 Overall Rating <span className="text-rose-500">*</span>
               </label>
               <div className="flex flex-wrap items-center gap-2">
@@ -150,7 +150,7 @@ export const FeedbackPage: React.FC = () => {
                     </button>
                   );
                 })}
-                <span className="ml-2 text-xs sm:text-sm font-bold text-slate-700">
+                <span className="ml-2 text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-400">
                   {rating === 5 && 'Outstanding (5/5)'}
                   {rating === 4 && 'Very Good (4/5)'}
                   {rating === 3 && 'Average (3/5)'}
@@ -180,13 +180,13 @@ export const FeedbackPage: React.FC = () => {
 
             {/* Category Select */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-1.5">
+              <label className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                 Feedback Focus Area <span className="text-rose-500">*</span>
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as typeof category)}
-                className="w-full neo-inset px-4 py-3 text-base sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
+                className="w-full neo-inset px-4 py-3 text-base sm:text-sm text-slate-800 dark:text-slate-100 dark:bg-[#0e1726] focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
               >
                 <option value="service_quality">Service Quality & Speed</option>
                 <option value="staff_assistance">Staff Assistance & Politeness</option>
@@ -198,7 +198,7 @@ export const FeedbackPage: React.FC = () => {
 
             {/* Review Message */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-1.5">
+              <label className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                 Review Details <span className="text-rose-500">*</span>
               </label>
               <textarea
@@ -208,13 +208,13 @@ export const FeedbackPage: React.FC = () => {
                 placeholder="Describe your visit, which service you availed, and how our staff assisted you..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full neo-inset px-4 py-3 text-base sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 resize-y"
+                className="w-full neo-inset px-4 py-3 text-base sm:text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 resize-y"
               />
-              <p className="text-[11px] text-slate-400 mt-1 text-right">{message.length}/1000 characters</p>
+              <p className="text-[11px] text-slate-400 dark:text-slate-400 mt-1 text-right">{message.length}/1000 characters</p>
             </div>
 
             {/* Public Consent Checkbox */}
-            <div className="space-y-3 pt-3 border-t border-slate-200/60">
+            <div className="space-y-3 pt-3 border-t border-slate-200/60 dark:border-white/10">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -222,7 +222,7 @@ export const FeedbackPage: React.FC = () => {
                   onChange={(e) => setPublicConsent(e.target.checked)}
                   className="mt-1 w-4 h-4 rounded text-brand-teal focus:ring-brand-teal"
                 />
-                <span className="text-xs text-slate-600 leading-relaxed font-medium">
+                <span className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   I grant permission to publish this review on the Baba Anandeshwar Internet Cafe website. (Personal contact details are never shown).
                 </span>
               </label>
@@ -235,7 +235,7 @@ export const FeedbackPage: React.FC = () => {
                   onChange={(e) => setPrivacyConsent(e.target.checked)}
                   className="mt-1 w-4 h-4 rounded text-brand-teal focus:ring-brand-teal"
                 />
-                <span className="text-xs text-slate-600 leading-relaxed font-medium">
+                <span className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   I agree that this feedback represents my genuine opinion and complies with the site's privacy terms. <span className="text-rose-500">*</span>
                 </span>
               </label>

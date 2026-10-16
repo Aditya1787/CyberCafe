@@ -388,12 +388,37 @@
   }
 
   .dark .bg-brand-bg,
-  .dark [class*="bg-brand-bg"] {
+  .dark [class*="bg-brand-bg"],
+  .dark [class*="bg-[#e9eef6]"],
+  .dark [class*="bg-\[\#e9eef6\]"] {
     background-color: #0b111e !important;
   }
 
   .dark section:not([class*="bg-gradient-to-r"]):not([class*="from-brand-navy-dark"]) {
     background-color: #0b111e !important;
+  }
+
+  /* Form Elements in Dark Mode */
+  .dark select,
+  .dark option {
+    background-color: #0e1726 !important;
+    color: #f8fafc !important;
+  }
+
+  .dark input,
+  .dark textarea {
+    color: #f8fafc !important;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #64748b !important;
+  }
+
+  /* In dark mode, ensure any white card containers become dark slate */
+  .dark .bg-white {
+    background-color: #111a2d !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
   }
 }
 
