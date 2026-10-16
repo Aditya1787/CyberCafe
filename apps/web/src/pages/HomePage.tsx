@@ -27,11 +27,16 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-gradient-to-b from-white via-brand-bg/60 to-brand-bg">
+      <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-gradient-to-b from-white via-brand-bg/60 to-brand-bg dark:from-[#0f172a] dark:via-[#0c121e] dark:to-[#0b111e]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Headlines & CTA */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+            {/* 3D Interactive Hero Canvas - Upper side on phone responsive (order-1), right column on desktop (lg:order-2) */}
+            <div className="order-1 lg:order-2 lg:col-span-5 relative w-full">
+              <Hero3D />
+            </div>
+
+            {/* Headlines & CTA - Lower side on phone responsive (order-2), left column on desktop (lg:order-1) */}
+            <div className="order-2 lg:order-1 lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/10 text-brand-teal-dark border border-brand-teal/20 text-xs font-semibold">
                 <ShieldCheck className="w-4 h-4 text-brand-teal" />
                 <span>Hanspuram, Naubasta, Kanpur &bull; Established Local Support</span>
@@ -104,11 +109,6 @@ export const HomePage: React.FC = () => {
                   <span className="font-medium">Guaranteed Slots</span>
                 </div>
               </div>
-            </div>
-
-            {/* Right Column: 3D Interactive Hero Canvas */}
-            <div className="lg:col-span-5 relative">
-              <Hero3D />
             </div>
           </div>
         </div>

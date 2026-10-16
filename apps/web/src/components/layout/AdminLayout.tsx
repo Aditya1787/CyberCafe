@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.js';
 import { Button } from '../common/Button.js';
+import { ThemeToggle } from '../common/ThemeToggle.js';
 
 export const AdminLayout: React.FC = () => {
   const { user, profile, isAdmin, isLoading, signOut } = useAuth();
@@ -24,10 +25,10 @@ export const AdminLayout: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-[#0b111e] flex items-center justify-center">
         <div className="text-center space-y-3">
           <div className="w-10 h-10 border-4 border-brand-teal border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-sm text-gray-500 font-medium">Verifying administrator session...</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Verifying administrator session...</p>
         </div>
       </div>
     );
@@ -36,13 +37,13 @@ export const AdminLayout: React.FC = () => {
   // Not logged in or not admin
   if (!user || !isAdmin) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div className="bg-white max-w-md w-full rounded-2xl shadow-elevated p-8 text-center border border-gray-100">
-          <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-[#0b111e] flex items-center justify-center p-4">
+        <div className="bg-white dark:bg-[#151d2c] max-w-md w-full rounded-2xl shadow-elevated p-8 text-center border border-gray-100 dark:border-white/10">
+          <div className="w-14 h-14 rounded-2xl bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto mb-4">
             <ShieldAlert className="w-7 h-7" />
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Admin Access Required</h2>
-          <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Admin Access Required</h2>
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
             You must be logged in as an authorized administrator to access the Baba Anandeshwar management portal.
           </p>
           <div className="flex flex-col gap-2.5">
@@ -73,9 +74,9 @@ export const AdminLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] flex flex-col lg:flex-row text-slate-800">
+    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] flex flex-col lg:flex-row text-slate-800 dark:text-slate-100 transition-colors duration-200">
       {/* Mobile Top Header */}
-      <div className="lg:hidden bg-brand-navy-dark text-white px-4 py-3.5 flex items-center justify-between sticky top-0 z-30 shadow-md">
+      <div className="lg:hidden bg-brand-navy-dark text-white px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-md">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-brand-teal flex items-center justify-center font-bold text-sm shadow">
             BA
@@ -85,13 +86,16 @@ export const AdminLayout: React.FC = () => {
             <span className="text-[10px] text-brand-teal font-semibold uppercase tracking-wider block">Staff Dashboard</span>
           </div>
         </div>
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
-          aria-label="Toggle menu"
-        >
-          {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle size="sm" />
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Sidebar Navigation */}
@@ -143,16 +147,19 @@ export const AdminLayout: React.FC = () => {
 
         {/* Sidebar Footer */}
         <div className="p-5 border-t border-white/10 space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-xs">
-              {profile?.display_name?.slice(0, 2).toUpperCase() || 'AD'}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-xs">
+                {profile?.display_name?.slice(0, 2).toUpperCase() || 'AD'}
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-white truncate max-w-[110px]">{profile?.display_name || 'Administrator'}</p>
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-brand-gold/20 text-brand-gold font-semibold uppercase">
+                  {profile?.role || 'Admin'}
+                </span>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">{profile?.display_name || 'Administrator'}</p>
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-brand-gold/20 text-brand-gold font-semibold uppercase">
-                {profile?.role || 'Admin'}
-              </span>
-            </div>
+            <ThemeToggle size="sm" />
           </div>
 
           <div className="pt-2 flex flex-col gap-2">

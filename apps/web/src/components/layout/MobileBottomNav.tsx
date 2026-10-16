@@ -35,12 +35,12 @@ export const MobileBottomNav: React.FC = () => {
               >
                 <div
                   className={`w-12 h-12 rounded-full neo-btn-teal flex items-center justify-center text-white shadow-lg transition-transform active:scale-95 ${
-                    isActive ? 'ring-2 ring-sky-300 ring-offset-2 ring-offset-[#e9eef6]' : ''
+                    isActive ? 'ring-2 ring-sky-300 ring-offset-2 ring-offset-[#e9eef6] dark:ring-offset-[#0b111e]' : ''
                   }`}
                 >
                   <CalendarCheck className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold text-sky-700 mt-1">
+                <span className="text-[10px] font-bold text-sky-700 dark:text-sky-400 mt-1">
                   {item.label}
                 </span>
               </Link>
@@ -52,9 +52,9 @@ export const MobileBottomNav: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="flex flex-col items-center justify-center py-1 px-2 text-slate-500 hover:text-sky-600 active:scale-95 transition-all"
+                className="flex flex-col items-center justify-center py-1 px-2 text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 active:scale-95 transition-all"
               >
-                <div className="w-8 h-8 neo-circle text-slate-600">
+                <div className="w-8 h-8 neo-circle text-slate-600 dark:text-slate-300">
                   <PhoneCall className="w-4 h-4" />
                 </div>
                 <span className="text-[10px] font-medium mt-1">
@@ -72,12 +72,12 @@ export const MobileBottomNav: React.FC = () => {
               key={item.path}
               to={item.path!}
               className={`flex flex-col items-center justify-center py-1 px-2 transition-all active:scale-95 ${
-                isActive ? 'text-sky-600 font-semibold' : 'text-slate-500 hover:text-slate-800'
+                isActive ? 'text-sky-600 dark:text-sky-400 font-semibold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                  isActive ? 'neo-pill-inset text-sky-600 font-bold' : 'neo-circle'
+                  isActive ? 'neo-pill-inset text-sky-600 dark:text-sky-400 font-bold' : 'neo-circle'
                 }`}
               >
                 <Icon className="w-4 h-4" />
