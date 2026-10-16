@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: #e9eef6;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Optimize touch action on mobile phones */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  /* ====================================================================
+     NEOMORPHISM (SOFT UI) DESIGN SYSTEM
+     Dual-light physics, tactile extrusion, inset grooves, and soft shadows
+     ==================================================================== */
+
+  /* Standard Raised Neomorphic Surface */
+  .neo-card {
+    background: #e9eef6;
+    box-shadow: 8px 8px 18px #cad5e3, -8px -8px 18px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1.5rem;
+  }
+
+  /* Small / Compact Raised Card */
+  .neo-card-sm {
+    background: #e9eef6;
+    box-shadow: 5px 5px 12px #cbd6e4, -5px -5px 12px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 1rem;
+  }
+
+  /* Interactive Hover Lift */
+  .neo-card-hover {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neo-card-hover:hover {
+    box-shadow: 12px 12px 24px #c0cdde, -12px -12px 24px #ffffff;
+    transform: translateY(-3px);
+  }
+
+  /* Inset / Sunken Grooves for Inputs, Search Fields & Active Containers */
+  .neo-inset {
+    background: #e4eaf3;
+    box-shadow: inset 3px 3px 6px #c6d2e1, inset -3px -3px 6px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.875rem;
+  }
+
+  .neo-inset:focus-within {
+    box-shadow: inset 3px 3px 7px #b8c7da, inset -3px -3px 7px #ffffff, 0 0 0 2px rgba(14, 165, 233, 0.4);
+  }
+
+  /* Tactile Extruded Neutral Button */
+  .neo-btn {
+    background: #e9eef6;
+    box-shadow: 5px 5px 12px #c9d5e4, -5px -5px 12px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.15s ease-in-out;
+  }
+
+  .neo-btn:hover {
+    box-shadow: 6px 6px 14px #bfcde0, -6px -6px 14px #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .neo-btn:active, .neo-pressed {
+    box-shadow: inset 3px 3px 6px #c4d0df, inset -3px -3px 6px #ffffff !important;
+    transform: scale(0.98);
+  }
+
+  /* Primary Extruded Button (Deep Navy with soft glow) */
+  .neo-btn-primary {
+    background: linear-gradient(135deg, #1e3a6a 0%, #2b4e8c 100%);
+    box-shadow: 6px 6px 14px #cad5e3, -4px -4px 10px #ffffff;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.15s ease-in-out;
+  }
+
+  .neo-btn-primary:hover {
+    background: linear-gradient(135deg, #172d54 0%, #24437a 100%);
+    box-shadow: 7px 7px 16px #bfcdde, -5px -5px 12px #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .neo-btn-primary:active {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.2) !important;
+    transform: scale(0.98);
+  }
+
+  /* Teal / Cyan Accent Extruded Button */
+  .neo-btn-teal {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+    box-shadow: 6px 6px 14px #cad5e3, -4px -4px 10px #ffffff;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.15s ease-in-out;
+  }
+
+  .neo-btn-teal:hover {
+    background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+    box-shadow: 7px 7px 16px #bfcdde, -5px -5px 12px #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .neo-btn-teal:active {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.35), inset -2px -2px 5px rgba(255, 255, 255, 0.25) !important;
+    transform: scale(0.98);
+  }
+
+  /* Neomorphic Pill & Badge */
+  .neo-pill {
+    background: #e9eef6;
+    box-shadow: 3px 3px 7px #cad5e3, -3px -3px 7px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 9999px;
+  }
+
+  .neo-pill-inset {
+    background: #e2e9f3;
+    box-shadow: inset 2px 2px 5px #c7d3e2, inset -2px -2px 5px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 9999px;
+  }
+
+  /* Neomorphic Circular Button */
+  .neo-circle {
+    background: #e9eef6;
+    box-shadow: 4px 4px 10px #cad5e3, -4px -4px 10px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease-in-out;
+  }
+
+  .neo-circle:hover {
+    box-shadow: 5px 5px 12px #bfcde0, -5px -5px 12px #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .neo-circle:active {
+    box-shadow: inset 3px 3px 6px #c4d0df, inset -3px -3px 6px #ffffff !important;
+    transform: scale(0.96);
+  }
+
+  /* Neomorphic Navigation Bar */
+  .neo-nav {
+    background: rgba(233, 238, 246, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 14px rgba(186, 199, 217, 0.45);
+  }
+
+  /* Neomorphic Mobile Bottom Dock */
+  .neo-bottom-nav {
+    background: rgba(233, 238, 246, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -8px 24px rgba(175, 191, 212, 0.45);
+  }
+
+  /* Neomorphic Card Dark Variant (Admin & Modals) */
+  .neo-card-dark {
+    background: #0f172a;
+    box-shadow: 8px 8px 20px #090e1a, -6px -6px 16px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-sky-900 to-teal-800;
+  }
+
+  .text-gradient-cyan {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-teal-600;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-orange-600;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
