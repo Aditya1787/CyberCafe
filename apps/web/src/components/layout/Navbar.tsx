@@ -38,8 +38,8 @@ export const Navbar: React.FC = () => {
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#e9eef6]/90 dark:bg-[#0e1420]/95 backdrop-blur-md shadow-[0_6px_20px_rgba(163,177,198,0.35)] dark:shadow-[0_6px_20px_rgba(0,0,0,0.6)] py-2.5 border-b border-slate-200/60 dark:border-white/10'
-          : 'bg-[#e9eef6] dark:bg-[#0e1420] py-3.5 border-b border-slate-200/50 dark:border-white/10'
+          ? 'bg-[#e9eef6]/90 dark:bg-[#0b111e]/95 backdrop-blur-md shadow-[0_6px_20px_rgba(163,177,198,0.35)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.6)] py-2.5 border-b border-slate-200/60 dark:border-white/10'
+          : 'bg-[#e9eef6] dark:bg-[#0b111e] py-3.5 border-b border-slate-200/50 dark:border-white/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -27,7 +27,7 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-gradient-to-b from-white via-brand-bg/60 to-brand-bg dark:from-[#0f172a] dark:via-[#0c121e] dark:to-[#0b111e]">
+      <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-gradient-to-b from-white via-brand-bg/60 to-brand-bg dark:from-[#0b111e] dark:via-[#0b111e] dark:to-[#080d17]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             {/* 3D Interactive Hero Canvas - Upper side on phone responsive (order-1), right column on desktop (lg:order-2) */}

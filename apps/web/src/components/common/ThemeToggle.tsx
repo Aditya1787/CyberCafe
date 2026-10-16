@@ -27,7 +27,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     >
       <div className="relative w-5 h-5 flex items-center justify-center">
         {isDark ? (
-          <Sun className="w-5 h-5 text-amber-400 transform transition-transform duration-300 rotate-0 hover:rotate-90 filter drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+          <Sun className="w-5 h-5 text-amber-400 transform transition-transform duration-300 rotate-0 hover:rotate-90" />
         ) : (
           <Moon className="w-5 h-5 text-slate-700 transform transition-transform duration-300 -rotate-12 hover:rotate-0" />
         )}
