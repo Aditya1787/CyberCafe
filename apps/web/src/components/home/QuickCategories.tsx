@@ -27,16 +27,16 @@ const CATEGORIES = [
 
 export const QuickCategories: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-16 sm:py-20 bg-[#e9eef6] dark:bg-[#0b111e] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="neo-pill-inset px-3.5 py-1 text-xs uppercase font-bold tracking-widest text-sky-700">
+          <span className="neo-pill-inset px-3.5 py-1 text-xs uppercase font-bold tracking-widest text-sky-700 dark:text-sky-400">
             Explore By Department
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 tracking-tight">
             All Service Categories
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2">
             Select a department to view required documents, pricing, guidelines, and book your visit.
           </p>
         </div>
@@ -53,12 +53,12 @@ export const QuickCategories: React.FC = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors text-base truncate">
+                  <h3 className="font-extrabold text-slate-900 dark:text-white group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors text-base truncate">
                     {cat.name}
                   </h3>
                   <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all" />
                 </div>
-                <p className="text-xs text-slate-600 mt-1 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 line-clamp-2 leading-relaxed">
                   {cat.desc}
                 </p>
               </div>

@@ -5,17 +5,17 @@ import { Button } from '../components/common/Button.js';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-brand-bg py-12 sm:py-16">
+    <div className="min-h-screen bg-brand-bg dark:bg-[#0b111e] py-12 sm:py-16 transition-colors duration-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Hero Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-xs font-bold tracking-widest uppercase text-brand-teal">
+          <span className="text-xs font-bold tracking-widest uppercase text-brand-teal dark:text-sky-400">
             About Our Business
           </span>
-          <h1 className="text-3xl sm:text-5xl font-black text-brand-navy-dark tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-brand-navy-dark dark:text-white tracking-tight">
             Serving Kanpur with Verified Digital & Application Assistance
           </h1>
-          <p className="text-base text-gray-600 leading-relaxed">
+          <p className="text-base text-gray-600 dark:text-slate-300 leading-relaxed">
             Baba Anandeshwar Internet Cafe was established with a clear mission: to provide Kanpur citizens, students, and local families with prompt, reliable, and transparent digital services under one roof.
           </p>
         </div>

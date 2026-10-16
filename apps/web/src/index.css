@@ -378,6 +378,23 @@
   .dark .bg-gradient-to-b.from-white {
     background: linear-gradient(to bottom, #101625 0%, #0c121e 60%, #0b111e 100%) !important;
   }
+
+  /* Full Dark Mode Background Consistency */
+  .dark,
+  html.dark,
+  html.dark body,
+  .dark body {
+    background-color: #0b111e !important;
+  }
+
+  .dark .bg-brand-bg,
+  .dark [class*="bg-brand-bg"] {
+    background-color: #0b111e !important;
+  }
+
+  .dark section:not([class*="bg-gradient-to-r"]):not([class*="from-brand-navy-dark"]) {
+    background-color: #0b111e !important;
+  }
 }
 
 /* Custom Scrollbars */

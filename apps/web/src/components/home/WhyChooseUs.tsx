@@ -36,16 +36,16 @@ const BENEFITS = [
 
 export const WhyChooseUs: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-16 sm:py-20 bg-[#e9eef6] dark:bg-[#0b111e] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-sky-700">
+          <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-sky-700 dark:text-sky-400">
             The Anandeshwar Standard
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 tracking-tight">
             Why Local Residents Rely On Us
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2">
             Reliable assistance, verified processes, and genuine service for students, families, and professionals.
           </p>
         </div>

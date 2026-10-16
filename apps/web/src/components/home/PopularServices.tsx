@@ -18,7 +18,7 @@ export const PopularServices: React.FC = () => {
   const services = data?.data || [];
 
   return (
-    <section className="py-20 bg-brand-bg">
+    <section className="py-20 bg-brand-bg/50 dark:bg-[#0b111e] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -26,10 +26,10 @@ export const PopularServices: React.FC = () => {
               <Sparkles className="w-3.5 h-3.5" />
               <span>Most Requested Services</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy-dark">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-navy-dark dark:text-white">
               Popular Assistance Services
             </h2>
-            <p className="text-sm text-gray-500 mt-1 max-w-xl">
+            <p className="text-sm text-gray-500 dark:text-slate-300 mt-1 max-w-xl">
               High-demand citizen applications, identity verification assistance, and essential document printing.
             </p>
           </div>

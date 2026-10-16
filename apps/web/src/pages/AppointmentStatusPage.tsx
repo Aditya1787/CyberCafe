@@ -103,25 +103,25 @@ export const AppointmentStatusPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg py-10 sm:py-16">
+    <div className="min-h-screen bg-brand-bg dark:bg-[#0b111e] py-10 sm:py-16 transition-colors duration-200">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-gray-500 mb-6">
-          <Link to="/" className="hover:text-brand-navy">Home</Link>
+        <nav className="flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400 mb-6">
+          <Link to="/" className="hover:text-brand-navy dark:hover:text-sky-400">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-gray-900 font-medium">Check Appointment Status</span>
+          <span className="text-gray-900 dark:text-white font-medium">Check Appointment Status</span>
         </nav>
 
         {/* Card */}
         <div className="neo-card p-6 sm:p-10 space-y-8">
           <div>
-            <span className="neo-pill-inset px-3 py-1 text-xs font-bold tracking-widest uppercase text-sky-700">
+            <span className="neo-pill-inset px-3 py-1 text-xs font-bold tracking-widest uppercase text-sky-700 dark:text-sky-400">
               Booking Tracking
             </span>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-2 tracking-tight">
               Check Appointment Status
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
               Enter your booking reference code and registered phone number to verify appointment status.
             </p>
           </div>

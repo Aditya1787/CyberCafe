@@ -16,17 +16,17 @@ export const PublicReviews: React.FC = () => {
   const reviews = data?.data || [];
 
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-16 sm:py-20 bg-[#e9eef6] dark:bg-[#0b111e] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-sky-700">
+            <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-sky-700 dark:text-sky-400">
               Customer Experiences
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 tracking-tight">
               Community Feedback & Ratings
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2 max-w-xl">
               Authentic reviews submitted by verified visitors to Baba Anandeshwar Internet Cafe in Kanpur.
             </p>
           </div>

@@ -45,7 +45,7 @@ const CustomerLayout: React.FC = () => {
   const bannerEnabled = data?.data?.website_content?.announcement_banner_enabled ?? true;
 
   return (
-    <div className="flex flex-col min-h-screen pb-16 sm:pb-0 bg-[#e9eef6] dark:bg-[#0b111e] text-slate-800 dark:text-slate-100 transition-colors duration-200">
+    <div className="flex flex-col min-h-screen pb-16 sm:pb-0 text-slate-800 dark:text-slate-100 transition-colors duration-200">
       <AnnouncementBanner text={bannerText} enabled={bannerEnabled} />
       <Navbar />
       <div className="flex-1">

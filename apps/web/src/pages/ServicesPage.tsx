@@ -83,17 +83,17 @@ export const ServicesPage: React.FC = () => {
   const hasActiveFilters = currentCategory !== 'all' || currentSearch !== '' || currentSort !== 'order';
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] py-8 sm:py-16">
+    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] py-8 sm:py-16 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           <span className="text-xs font-extrabold tracking-widest uppercase text-brand-teal">
             Complete Digital Catalogue
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-800 mt-1">
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-800 dark:text-white mt-1">
             All 50 Internet Cafe Services
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2">
             Explore required documents, assistance fees, processing duration, and book your visit in advance.
           </p>
         </div>

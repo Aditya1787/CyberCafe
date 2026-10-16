@@ -62,7 +62,7 @@ export const ServiceDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg py-10 sm:py-16">
+    <div className="min-h-screen bg-brand-bg dark:bg-[#0b111e] py-10 sm:py-16 transition-colors duration-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 mb-6">

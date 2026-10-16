@@ -8,17 +8,17 @@ export const ContactPage: React.FC = () => {
     'https://www.google.com/maps/place/Baba+Cyber+Cafe+%26+Photo+Copy/@26.3935664,80.3094068,15z/data=!4m15!1m8!3m7!1s0x399c467d62cfd26d:0xa04877de65f55c0d!2sHanspuram,+Naubasta,+Kanpur,+Uttar+Pradesh+208021!3b1!8m2!3d26.3901426!4d80.3199179!16s%2Fg%2F11_p_30tt!3m5!1s0x399c47fec3a8da09:0x7f82135d13837b37!8m2!3d26.3867308!4d80.3139335!16s%2Fg%2F11tkb2396s?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D';
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] py-12 sm:py-16">
+    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] py-12 sm:py-16 transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-brand-teal">
+          <span className="neo-pill-inset px-3.5 py-1 text-xs font-bold tracking-widest uppercase text-brand-teal dark:text-sky-400">
             Get in Touch
           </span>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-800 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-800 dark:text-white tracking-tight">
             Contact & Location Details
           </h1>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-slate-600 dark:text-slate-300">
             Visit our center in Hanspuram, Naubasta, Kanpur or call our team for application assistance.
           </p>
         </div>

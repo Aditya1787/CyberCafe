@@ -97,13 +97,13 @@ export const FeedbackPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#e9eef6] py-8 sm:py-16">
+    <div className="min-h-screen bg-[#e9eef6] dark:bg-[#0b111e] py-8 sm:py-16 transition-colors duration-200">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-slate-500 mb-6">
-          <Link to="/" className="hover:text-brand-navy font-medium">Home</Link>
+        <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6">
+          <Link to="/" className="hover:text-brand-navy dark:hover:text-sky-400 font-medium">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-slate-800 font-bold">Customer Feedback</span>
+          <span className="text-slate-800 dark:text-white font-bold">Customer Feedback</span>
         </nav>
 
         {/* Card */}
@@ -112,7 +112,7 @@ export const FeedbackPage: React.FC = () => {
             <span className="text-xs font-extrabold tracking-widest uppercase text-brand-teal">
               We Value Your Voice
             </span>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-800 mt-1">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white mt-1">
               Share Your Cafe Experience
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 mt-1">

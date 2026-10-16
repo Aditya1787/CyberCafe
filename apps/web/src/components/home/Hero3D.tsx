@@ -4,15 +4,137 @@ import { Float, RoundedBox, Ring, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { Laptop, FileCheck, Printer, ShieldCheck, Sparkles, Compass } from 'lucide-react';
 
-// Floating Glass Core (Workstation / Cyber Kiosk)
-function GlassCentralKiosk() {
+// Realistic Laptop Keyboard Component
+function LaptopKeyboard() {
+  const fnKeys = Array.from({ length: 14 });
+  const numKeys = Array.from({ length: 14 });
+  const qwerKeys = Array.from({ length: 14 });
+  const asdfKeys = Array.from({ length: 13 });
+  const zxcvKeys = Array.from({ length: 13 });
+  const keyColor = "#1a2233";
+
+  return (
+    <group position={[0, -0.155, -0.22]}>
+      {/* Sunken keyboard well */}
+      <RoundedBox args={[2.36, 0.012, 1.02]} radius={0.02} smoothness={4} position={[0, -0.005, 0]}>
+        <meshStandardMaterial color="#080c14" roughness={0.8} />
+      </RoundedBox>
+
+      {/* Row 1: Function Keys */}
+      <group position={[0, 0.005, -0.41]}>
+        {fnKeys.map((_, i) => (
+          <RoundedBox
+            key={`fn-${i}`}
+            args={[0.13, 0.015, 0.08]}
+            radius={0.008}
+            smoothness={2}
+            position={[-1.02 + i * 0.157, 0, 0]}
+          >
+            <meshStandardMaterial color={keyColor} roughness={0.5} />
+          </RoundedBox>
+        ))}
+      </group>
+
+      {/* Row 2: Numbers */}
+      <group position={[0, 0.005, -0.25]}>
+        {numKeys.map((_, i) => (
+          <RoundedBox
+            key={`num-${i}`}
+            args={[0.132, 0.015, 0.125]}
+            radius={0.008}
+            smoothness={2}
+            position={[-1.02 + i * 0.157, 0, 0]}
+          >
+            <meshStandardMaterial color={keyColor} roughness={0.5} />
+          </RoundedBox>
+        ))}
+      </group>
+
+      {/* Row 3: QWERTY */}
+      <group position={[0, 0.005, -0.09]}>
+        {qwerKeys.map((_, i) => (
+          <RoundedBox
+            key={`qwerty-${i}`}
+            args={[0.132, 0.015, 0.125]}
+            radius={0.008}
+            smoothness={2}
+            position={[-1.02 + i * 0.157, 0, 0]}
+          >
+            <meshStandardMaterial color={keyColor} roughness={0.5} />
+          </RoundedBox>
+        ))}
+      </group>
+
+      {/* Row 4: ASDF */}
+      <group position={[0, 0.005, 0.07]}>
+        {asdfKeys.map((_, i) => (
+          <RoundedBox
+            key={`asdf-${i}`}
+            args={[i === 0 || i === 12 ? 0.18 : 0.132, 0.015, 0.125]}
+            radius={0.008}
+            smoothness={2}
+            position={[-1.0 + i * 0.165, 0, 0]}
+          >
+            <meshStandardMaterial color={keyColor} roughness={0.5} />
+          </RoundedBox>
+        ))}
+      </group>
+
+      {/* Row 5: ZXCV */}
+      <group position={[0, 0.005, 0.23]}>
+        {zxcvKeys.map((_, i) => (
+          <RoundedBox
+            key={`zxcv-${i}`}
+            args={[i === 0 || i === 12 ? 0.22 : 0.132, 0.015, 0.125]}
+            radius={0.008}
+            smoothness={2}
+            position={[-0.98 + i * 0.163, 0, 0]}
+          >
+            <meshStandardMaterial color={keyColor} roughness={0.5} />
+          </RoundedBox>
+        ))}
+      </group>
+
+      {/* Row 6: Spacebar and Modifier Row */}
+      <group position={[0, 0.005, 0.39]}>
+        <RoundedBox args={[0.16, 0.015, 0.125]} radius={0.008} smoothness={2} position={[-0.96, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+        <RoundedBox args={[0.15, 0.015, 0.125]} radius={0.008} smoothness={2} position={[-0.78, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+        <RoundedBox args={[0.17, 0.015, 0.125]} radius={0.008} smoothness={2} position={[-0.59, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+
+        {/* Spacebar */}
+        <RoundedBox args={[0.82, 0.015, 0.125]} radius={0.008} smoothness={2} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#222b3d" roughness={0.5} />
+        </RoundedBox>
+
+        <RoundedBox args={[0.17, 0.015, 0.125]} radius={0.008} smoothness={2} position={[0.59, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+        <RoundedBox args={[0.15, 0.015, 0.125]} radius={0.008} smoothness={2} position={[0.78, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+        <RoundedBox args={[0.16, 0.015, 0.125]} radius={0.008} smoothness={2} position={[0.96, 0, 0]}>
+          <meshStandardMaterial color={keyColor} roughness={0.5} />
+        </RoundedBox>
+      </group>
+    </group>
+  );
+}
+
+// Realistic Laptop Workstation with Browser Interface on Screen
+function RealisticLaptop() {
   const meshRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
     if (meshRef.current) {
       // Subtle mouse parallax & gentle breathing
-      const targetY = state.pointer.x * 0.4;
-      const targetX = -state.pointer.y * 0.3;
+      const targetY = state.pointer.x * 0.35;
+      const targetX = -state.pointer.y * 0.25;
       meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.05);
       meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.05);
     }
@@ -20,48 +142,138 @@ function GlassCentralKiosk() {
 
   return (
     <group ref={meshRef} position={[0, -0.1, 0]}>
-      {/* Sleek Minimalist Workstation Base */}
-      <RoundedBox args={[2.7, 0.08, 1.8]} radius={0.03} smoothness={4} position={[0, -0.2, 0]}>
+      {/* Sleek Aluminum Laptop Base Chassis */}
+      <RoundedBox args={[2.75, 0.08, 1.85]} radius={0.035} smoothness={4} position={[0, -0.2, 0]}>
         <meshPhysicalMaterial
-          color="#0b111e"
+          color="#0f1624"
           roughness={0.3}
           metalness={0.7}
-          clearcoat={0.5}
+          clearcoat={0.3}
         />
       </RoundedBox>
 
-      {/* Trackpad glowing glass strip */}
-      <mesh position={[0, -0.15, 0.45]}>
-        <planeGeometry args={[0.7, 0.45]} />
-        <meshStandardMaterial color="#0284c7" roughness={0.4} metalness={0.3} />
+      {/* Realistic Laptop Keyboard */}
+      <LaptopKeyboard />
+
+      {/* Sleek Matte Glass Trackpad in Palm Rest (NO BLUE COLOR) */}
+      <RoundedBox args={[0.84, 0.012, 0.52]} radius={0.025} smoothness={4} position={[0, -0.156, 0.46]}>
+        <meshPhysicalMaterial
+          color="#161f30"
+          roughness={0.35}
+          metalness={0.35}
+          clearcoat={0.3}
+        />
+      </RoundedBox>
+      <mesh position={[0, -0.15, 0.46]}>
+        <planeGeometry args={[0.85, 0.53]} />
+        <meshBasicMaterial color="#2d3748" wireframe={true} transparent opacity={0.25} />
       </mesh>
 
-      {/* Floating Display Screen (tilted at ~105 deg) */}
-      <group position={[0, -0.1, -0.8]} rotation={[-0.25, 0, 0]}>
-        {/* Sleek bezel */}
-        <RoundedBox args={[2.55, 1.65, 0.05]} radius={0.03} smoothness={4} position={[0, 0.8, 0]}>
+      {/* Laptop Hinge Cylinder */}
+      <mesh position={[0, -0.155, -0.85]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.035, 0.035, 2.3, 16]} />
+        <meshStandardMaterial color="#0b111e" metalness={0.9} roughness={0.2} />
+      </mesh>
+
+      {/* Laptop Screen Lid & Display (tilted back at natural angle) */}
+      <group position={[0, -0.1, -0.85]} rotation={[-0.25, 0, 0]}>
+        {/* Sleek Laptop Bezel */}
+        <RoundedBox args={[2.58, 1.68, 0.05]} radius={0.03} smoothness={4} position={[0, 0.8, 0]}>
           <meshPhysicalMaterial
             color="#0b111e"
-            metalness={0.8}
-            roughness={0.25}
+            metalness={0.85}
+            roughness={0.2}
           />
         </RoundedBox>
 
-        {/* Display Panel */}
+        {/* Display Glass Surface */}
         <mesh position={[0, 0.8, 0.03]}>
-          <planeGeometry args={[2.42, 1.52]} />
-          <meshPhysicalMaterial
-            color="#0f172a"
-            roughness={0.2}
-            metalness={0.1}
-          />
+          <planeGeometry args={[2.46, 1.56]} />
+          <meshBasicMaterial color="#090e18" />
         </mesh>
 
-        {/* Text on Computer Screen: BABA Andeshwar internet cafe */}
-        <group position={[0, 0.8, 0.045]}>
+        {/* Operating System & Browser Portal Interface on Screen */}
+        <group position={[0, 0.8, 0.035]}>
+          {/* Top Browser Header Bar */}
+          <mesh position={[0, 0.68, 0]}>
+            <planeGeometry args={[2.44, 0.16]} />
+            <meshBasicMaterial color="#111827" />
+          </mesh>
+
+          {/* Window control dots: Red, Yellow, Green */}
+          <mesh position={[-1.08, 0.68, 0.005]}>
+            <circleGeometry args={[0.024, 16]} />
+            <meshBasicMaterial color="#ef4444" />
+          </mesh>
+          <mesh position={[-1.01, 0.68, 0.005]}>
+            <circleGeometry args={[0.024, 16]} />
+            <meshBasicMaterial color="#f59e0b" />
+          </mesh>
+          <mesh position={[-0.94, 0.68, 0.005]}>
+            <circleGeometry args={[0.024, 16]} />
+            <meshBasicMaterial color="#10b981" />
+          </mesh>
+
+          {/* Browser Address Bar Pill */}
+          <RoundedBox args={[1.15, 0.09, 0.005]} radius={0.02} smoothness={2} position={[0, 0.68, 0.005]}>
+            <meshBasicMaterial color="#0b111e" />
+          </RoundedBox>
           <Text
-            position={[0, 0.32, 0]}
-            fontSize={0.15}
+            position={[0, 0.68, 0.01]}
+            fontSize={0.046}
+            color="#7dd3fc"
+            anchorX="center"
+            anchorY="middle"
+          >
+            🔒 baba-andeshwar-cafe.in/portal
+          </Text>
+
+          {/* Wi-Fi / Battery Status indicator */}
+          <Text
+            position={[1.0, 0.68, 0.01]}
+            fontSize={0.042}
+            color="#94a3b8"
+            anchorX="center"
+            anchorY="middle"
+          >
+            ONLINE 100%
+          </Text>
+
+          {/* Desktop Wallpaper Hero Card Background */}
+          <RoundedBox args={[2.26, 1.18, 0.005]} radius={0.04} smoothness={3} position={[0, -0.02, 0.005]}>
+            <meshStandardMaterial
+              color="#0d182b"
+              roughness={0.3}
+              metalness={0.2}
+            />
+          </RoundedBox>
+
+          {/* Inner Accent Header Card inside screen */}
+          <RoundedBox args={[2.08, 0.46, 0.006]} radius={0.03} smoothness={3} position={[0, 0.28, 0.01]}>
+            <meshStandardMaterial
+              color="#13233f"
+              roughness={0.4}
+              metalness={0.3}
+            />
+          </RoundedBox>
+
+          {/* Top pill */}
+          <Text
+            position={[0, 0.43, 0.015]}
+            fontSize={0.048}
+            color="#38bdf8"
+            anchorX="center"
+            anchorY="middle"
+            fontWeight="bold"
+            letterSpacing={0.04}
+          >
+            OFFICIAL DIGITAL CITIZEN PORTAL
+          </Text>
+
+          {/* BABA Andeshwar Heading */}
+          <Text
+            position={[0, 0.31, 0.015]}
+            fontSize={0.14}
             color="#ffffff"
             anchorX="center"
             anchorY="middle"
@@ -70,9 +282,11 @@ function GlassCentralKiosk() {
           >
             BABA Andeshwar
           </Text>
+
+          {/* internet cafe Subtitle */}
           <Text
-            position={[0, 0.12, 0]}
-            fontSize={0.13}
+            position={[0, 0.17, 0.015]}
+            fontSize={0.11}
             color="#38bdf8"
             anchorX="center"
             anchorY="middle"
@@ -80,24 +294,71 @@ function GlassCentralKiosk() {
           >
             internet cafe
           </Text>
+
+          {/* Location & Subtext */}
           <Text
-            position={[0, -0.12, 0]}
-            fontSize={0.08}
-            color="#94a3b8"
+            position={[0, 0.03, 0.015]}
+            fontSize={0.065}
+            color="#cbd5e1"
             anchorX="center"
             anchorY="middle"
           >
-            Hanspuram, Naubasta, Kanpur
+            Hanspuram, Naubasta, Kanpur &bull; Fast Appointments & Walk-ins
           </Text>
-          <Text
-            position={[0, -0.32, 0]}
-            fontSize={0.072}
-            color="#34d399"
-            anchorX="center"
-            anchorY="middle"
-          >
-            ● Live Digital Services Hub
-          </Text>
+
+          {/* 3 Quick Action Tiles on Laptop Screen */}
+          <group position={[0, -0.22, 0.015]}>
+            {/* Tile 1: Govt Services */}
+            <RoundedBox args={[0.62, 0.28, 0.005]} radius={0.02} smoothness={2} position={[-0.68, 0, 0]}>
+              <meshBasicMaterial color="#122036" />
+            </RoundedBox>
+            <Text position={[-0.68, 0.06, 0.01]} fontSize={0.062} color="#ffffff" anchorX="center" anchorY="middle" fontWeight="bold">
+              PAN & Aadhaar
+            </Text>
+            <Text position={[-0.68, -0.06, 0.01]} fontSize={0.045} color="#38bdf8" anchorX="center" anchorY="middle">
+              Instant Apply
+            </Text>
+
+            {/* Tile 2: Train & Travel */}
+            <RoundedBox args={[0.62, 0.28, 0.005]} radius={0.02} smoothness={2} position={[0, 0, 0]}>
+              <meshBasicMaterial color="#122036" />
+            </RoundedBox>
+            <Text position={[0, 0.06, 0.01]} fontSize={0.062} color="#ffffff" anchorX="center" anchorY="middle" fontWeight="bold">
+              IRCTC Tickets
+            </Text>
+            <Text position={[0, -0.06, 0.01]} fontSize={0.045} color="#fbbf24" anchorX="center" anchorY="middle">
+              Train & Flights
+            </Text>
+
+            {/* Tile 3: Print & Xerox */}
+            <RoundedBox args={[0.62, 0.28, 0.005]} radius={0.02} smoothness={2} position={[0.68, 0, 0]}>
+              <meshBasicMaterial color="#122036" />
+            </RoundedBox>
+            <Text position={[0.68, 0.06, 0.01]} fontSize={0.062} color="#ffffff" anchorX="center" anchorY="middle" fontWeight="bold">
+              Color Xerox
+            </Text>
+            <Text position={[0.68, -0.06, 0.01]} fontSize={0.045} color="#c084fc" anchorX="center" anchorY="middle">
+              Photo & Print
+            </Text>
+          </group>
+
+          {/* Bottom Live System Indicator */}
+          <group position={[0, -0.46, 0.015]}>
+            <mesh position={[-0.48, 0, 0]}>
+              <circleGeometry args={[0.018, 16]} />
+              <meshBasicMaterial color="#34d399" />
+            </mesh>
+            <Text
+              position={[0.08, 0, 0]}
+              fontSize={0.052}
+              color="#34d399"
+              anchorX="center"
+              anchorY="middle"
+              fontWeight="bold"
+            >
+              Live System Active &bull; Slotted Appointments Open
+            </Text>
+          </group>
         </group>
       </group>
     </group>
@@ -208,45 +469,6 @@ function FloatingServicePaper({
   );
 }
 
-// Concentric Orbiting Rings with Soft Muted Lighting
-function OrbitingRings() {
-  const ringRef1 = useRef<THREE.Mesh>(null);
-  const ringRef2 = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (ringRef1.current) {
-      ringRef1.current.rotation.z = state.clock.elapsedTime * 0.15;
-      ringRef1.current.rotation.x = 1.1 + Math.sin(state.clock.elapsedTime * 0.1) * 0.08;
-    }
-    if (ringRef2.current) {
-      ringRef2.current.rotation.z = -state.clock.elapsedTime * 0.12;
-      ringRef2.current.rotation.y = 0.5 + Math.cos(state.clock.elapsedTime * 0.1) * 0.08;
-    }
-  });
-
-  return (
-    <>
-      <mesh ref={ringRef1} position={[0, 0.1, -0.2]}>
-        <torusGeometry args={[2.2, 0.012, 16, 100]} />
-        <meshStandardMaterial
-          color="#0284c7"
-          roughness={0.4}
-          metalness={0.7}
-        />
-      </mesh>
-
-      <mesh ref={ringRef2} position={[0, 0.1, -0.3]}>
-        <torusGeometry args={[2.7, 0.01, 16, 100]} />
-        <meshStandardMaterial
-          color="#d97706"
-          roughness={0.4}
-          metalness={0.6}
-        />
-      </mesh>
-    </>
-  );
-}
-
 // Particle Constellation
 function ParticleField() {
   const particlesRef = useRef<THREE.Points>(null);
@@ -287,7 +509,7 @@ function ParticleField() {
   );
 }
 
-// Scene Composition with Soft, Low-Glare Lighting
+// Scene Composition with Soft, Low-Glare Lighting (NO BLUE RINGS)
 function MinimalGlassScene() {
   return (
     <>
@@ -296,12 +518,9 @@ function MinimalGlassScene() {
       <pointLight position={[-3, 2, 0]} intensity={0.7} color="#38bdf8" />
       <pointLight position={[3, -2, 1]} intensity={0.5} color="#fbbf24" />
 
-      {/* Orbiting Tech Rings */}
-      <OrbitingRings />
-
-      {/* Central Workstation with BABA Andeshwar internet cafe written on screen */}
+      {/* Central Realistic Laptop with Full Screen UI & Keyboard (NO BLUE TRACKPAD) */}
       <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.25}>
-        <GlassCentralKiosk />
+        <RealisticLaptop />
       </Float>
 
       {/* 4 Written Service Papers in the Back */}
